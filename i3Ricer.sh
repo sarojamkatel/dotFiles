@@ -10,31 +10,102 @@
 # Simple configuration: You define hotkeys and what they do in a plain-text config file (~/.config/sxhkd/sxhkdrc).
 # Custom commands: You can bind keys to any shell command or script you want.
 
-# i3-gaps (for a gap between windows)
+# i3 a tiling window manager .
 # picom (compositor)
 # rofi (app launcher)
 # polybar (status bar)
 # i3lock (screen locker)
 # Alacritty (modern terminal, as a termite replacement)
 # feh (for setting wallpapers)
-# lxappearance (GTK theme switcher)
+# lxappearance (GTK theme switcher): 
+#Note# A GTK application is a program built using the GNOME Toolkit (GTK).
+#LXAppearance is a tool used for configuring the appearance of GTK applications. It allows users to change themes, icon themes, fonts, and other visual settings for GTK-based applications. 
+
 # dmenu (optional fallback launcher)
 
 # installing Dependencies
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y \
-    i3 i3-gaps \
-    picom \
-    rofi \
-    polybar \
-    i3lock \
-    alacritty\
-    feh \
-    lxappearance \
-    dmenu \
-    git curl
+# sudo apt update && sudo apt upgrade -y
+# sudo apt install -y \
+#     i3  \
+#     picom \
+#     rofi \
+#     polybar \
+#     i3lock \
+#     alacritty\
+#     feh \
+#     lxappearance \
+#     dmenu \
+#     git curl
 
-echo "dependencies i3, i3-gaps, picom, rofi, polybar, i3lock, alacritty, feh, lxapperance, dmenu, git curl installed"
+# echo "dependencies i3, i3-gaps, picom, rofi, polybar, i3lock, alacritty, feh, lxapperance, dmenu, git curl installed"
+
+#..........................................................................................
+
+# installing dependencies in a more verbose mode
+# Function to install a package with verbose info
+# install_package() {
+#     local pkg="$1"
+#     echo -e "\n Installing: $pkg ..."
+    
+#     if apt-cache show "$pkg" &>/dev/null; then
+#         if sudo apt install -y "$pkg" &>/dev/null; then
+#             echo "$pkg installed successfully."
+#         else
+#             echo "Failed to install $pkg."
+#         fi
+#     else
+#         echo " Package $pkg not found in apt repositories. Skipping."
+#     fi
+# }
+
+# more verbose function which installs  only if packages are not present and show message if the package is already present .
+#.................................................................................................................................................................................
+install_package() {
+    local pkg="$1"
+
+    if dpkg -s "$pkg" &>/dev/null; then
+        echo " $pkg is already installed. Skipping."
+    else
+        echo -e "\n Installing: $pkg ..."
+        if apt-cache show "$pkg" &>/dev/null; then
+            if sudo apt install -y "$pkg" &>/dev/null; then
+                echo " $pkg installed successfully."
+            else
+                echo " Failed to install $pkg."
+            fi
+        else
+            echo " Package $pkg not found in apt repositories. Skipping."
+        fi
+    fi
+}
+
+# List of dependencies
+packages=(
+    i3
+    picom
+    rofi
+    polybar
+    i3lock
+    alacritty
+    feh
+    dmenu
+    git
+    curl
+    lxappearance
+)
+
+# Update repositories first
+
+# &>/dev/null sends both normal output and error messages to /dev/null, a special file that discards anything written to it
+# echo " Updating package lists..."
+sudo apt update -y &>/dev/null && echo " Update complete." || echo " Update failed."
+
+# Install each package with verbose feedback
+for pkg in "${packages[@]}"; do
+    install_package "$pkg"
+done
+
+#...............................................................................................
 
 
 echo "Setting up symlink of config files"
