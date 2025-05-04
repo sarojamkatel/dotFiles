@@ -213,7 +213,9 @@ font pango:System San Francisco 14
 
 
 #thin borders
-hide_edge_borders both
+default_border pixel 3
+client.focused          #ff0000 #1d1f21 #ffffff #ff0000 #ff0000
+
 
 
 
@@ -419,13 +421,28 @@ bar {
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 
-
-
 }
 
 
 
-# mod+shift+x will lock screen 
+#gaps between windows 
+
+
+# Configure 5px of space between windows and to the screen edges.
+gaps inner 10px
+
+# Configure an additional 5px of extra space to the screen edges,
+# for a total gap of 10px to the screen edges, and 5px between windows.
+gaps outer 5px
+
+# Only enable outer gaps when there is exactly one window or split container on the workspace.
+smart_gaps inverse_outer
+
+
+
+
+
+# mod+Shift+x will lock screen 
 bindsym $mod+Shift+x exec i3lock --color "$bg-color"
 
 
@@ -456,14 +473,15 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
+# to shutdown 
+bindsym $mod+Shift+BackSpace exec systemctl poweroff
 
 # this executes wallpaper always on the startup. 
-exec_always --no-startup-id feh -bg-scale ~/dotFiles/xotwodF5.png
+exec_always  feh --bg-fill  ~/dotFiles/xotwodF5.png
 
+
+exec_always ~/dotFiles/.config/picom/picom.conf
 
 exec_always ~/dotFiles/.config/polybar/launch.sh
-
-
-
 
 
