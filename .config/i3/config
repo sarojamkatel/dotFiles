@@ -402,10 +402,18 @@ set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+# client.focused          $bg-color           $bg-color          $text-color          #00ff00
+# client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+# client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+# client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+
+# this provides more visibility to the focused window
+client.focused          #7aa2f7 #1a1b26 #c0caf5 #7dcfff #7aa2f7
+client.focused_inactive #3b4261 #1a1b26 #a9b1d6 #3b4261 #3b4261
+client.unfocused        #3b4261 #1a1b26 #a9b1d6 #3b4261 #3b4261
+client.urgent           #f7768e #1a1b26 #ffffff #f7768e #f7768e
+client.placeholder      #1a1b26 #1a1b26 #ffffff #1a1b26 #1a1b26
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
