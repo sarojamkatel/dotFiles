@@ -21,8 +21,3 @@ yellow = "#e0af68"
 [colors.primary]
 background = "#1a1b26"
 foreground = "#a9b1d6"
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001B\r"
