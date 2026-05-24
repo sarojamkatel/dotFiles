@@ -213,8 +213,7 @@ font pango:System San Francisco 14
 
 
 #thin borders
-default_border pixel 3
-client.focused          #ff0000 #1d1f21 #ffffff #ff0000 #ff0000
+default_border pixel 2
 
 
 
@@ -416,20 +415,6 @@ client.urgent           #f7768e #1a1b26 #ffffff #f7768e #f7768e
 client.placeholder      #1a1b26 #1a1b26 #ffffff #1a1b26 #1a1b26
 
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-        colors {
-		background $bg-color
-	    	separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-
-}
 
 
 
@@ -437,14 +422,9 @@ bar {
 
 
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 10px
+gaps inner 12px
 
-# Configure an additional 5px of extra space to the screen edges,
-# for a total gap of 10px to the screen edges, and 5px between windows.
-gaps outer 5px
-
-# Only enable outer gaps when there is exactly one window or split container on the workspace.
-smart_gaps inverse_outer
+gaps outer 0
 
 
 
